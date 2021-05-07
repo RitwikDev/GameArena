@@ -13,7 +13,7 @@ body
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #111;
+  background: wheat;
 }
 
 .swiper-container
@@ -27,8 +27,14 @@ body
 {
   background-position: center;
   background-size: cover;
-  width: 300px;
+  width: 350px;
   height: 300px;
   background: #000;
   -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0006);
+}
+
+.featuredGameImage
+{
+  width: 350px;
+  height: 300px;
 }
