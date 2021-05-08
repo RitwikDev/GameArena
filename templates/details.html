@@ -4,17 +4,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
         <meta charset="utf-8">
         <title>Get Gamed</title>
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="../static/index.css"/>
-        <script src="../static/index.js"></script>
+        <script src="../static/details.js"></script>
     </head>
 
     <body>
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="/">Icon</a>
+          <a class="navbar-brand" href="/userHome">Icon</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -23,32 +21,39 @@
             <ul class="navbar-nav mr-auto">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Sign up/Log in
+                  My Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/showSignup">Sign up</a>
+                  <a class="dropdown-item" href="#">My Library</a>
+                  <a class="dropdown-item" href="#">Profile</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="/showLogin">Log in</a>
+                  <a class="dropdown-item" href="/logout">Logout</a>
                 </div>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="/showSearch" method="POST">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" id="searchField" name="searchField" aria-label="Search">
-              <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" id="searchField" name="searchField" aria-label="Search" value={{searchTerm}}>
+                <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
         </nav>
-
-        <div class="swiper-container">
-            <div class="swiper-wrapper" id="featuredGames">
-            </div> 
+        
+        <input type="hidden" id="gameId" value={{gameId}}>
+        <div class="row">
+            <div class="col" id="title" style="margin-top: 2%">
+            </div>
         </div>
-      </div>
-
-      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-      <!-- <script src="../static/SwipperForHomePage.js"></script> -->
-      
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <div class="row" style="margin: 2%">
+            <div class="col-2"></div>
+            <div class="col-8" id="photos"></div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-9" id="details" style="margin-bottom: 5%;"></div>
+            <div class="col-3" id="tools" style="margin-bottom: 5%;"></div>
+        </div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
 </html>

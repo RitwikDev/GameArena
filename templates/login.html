@@ -6,12 +6,13 @@
         <title>Get Gamed</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="../static/login.js"></script>
     </head>
 
     <body>
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">Icon</a>
+          <a class="navbar-brand" href="/">Icon</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -29,9 +30,9 @@
                 </div>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0" action="/showSearch" method="POST">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" id="searchField" name="searchField" aria-label="Search">
+              <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
         </nav>
@@ -44,7 +45,7 @@
             <div class="col-2"></div>
         </div>
 
-        <form action="/validateLogin" method="post" style="margin-top: 3%;">
+        <form id="loginForm" style="margin-top: 3%;">
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">

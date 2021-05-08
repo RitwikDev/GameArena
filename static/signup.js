@@ -19,17 +19,21 @@ $(document).ready(function()
                 {
                     console.log("Creating a new user");
                     $.ajax(
+                    {
+                        url: '/signup',
+                        data: $('form').serialize(),
+                        type: 'POST',
+                        success: function(response)
                         {
-                                url: '/signup',
-                                data: $('form').serialize(),
-                                type: 'POST',
-                                success: function(response) {
-                                    console.log(response);
-                                },
-                                error: function(error) {
-                                    console.log(error);
-                                }
-                        });
+                            let responseJSON = JSON.parse(response);
+                            if(responseJSON.message == "User created successfully!")
+                                window.location.href = "/showLogin";
+                        },
+                        error: function(error)
+                        {
+                            console.log(error);
+                        }
+                    });
                 }
 
                 else
