@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta charset="utf-8">
+        <title>GameArena - Administrator</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="../static/adminAddGame.js"></script>
+        <script src="../static/searchButtonNavbar.js"></script>
+        <link rel="stylesheet" href="../static/general.css">
+    </head>
+
+    <body style="color: white;">
+      <input type="hidden" value={{status}} id="status">
+      <div class="container-fluid">
+
+        <!--Logged in-->
+        <div id="userNav" style="display: block;">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/adminIndex">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Account
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Actions
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/addGame">New game</a>
+                  </div>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0" action="/showSearch" method="POST">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" id="searchField" name="searchField" aria-label="Search" oninput="searchTermChanged()">
+                <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="jumbotron jumbotron-fluid bg-secondary text-white">
+              <div class="container">
+                <h2 class="display-4"><b>Add <em id="newGameName"></em></b></h2>
+                <h5><span class="badge badge-pill badge-info">All fields are mandatory.</span></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <form id="gameForm" style="margin-bottom: 5%;">
+                    <div class="row">
+                        <div class="col">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Game&#39;s name" oninput="nameChanged(this.value)">
+                            <small class="text-danger" id="nameError"></small>
+                        </div>
+                        <div class="col">
+                            <label for="price">Price</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">$</span>
+                                </div>
+                                <input type="number" class="form-control" id="price" name="price" placeholder="Price" oninput="priceChanged(this.value)">
+                            </div>
+                            <small class="text-danger" id="priceError"></small>
+                        </div>
+                    </div>
+                    <div style="margin-top: 3%;">
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label">Description</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="description" name="description" rows="5" oninput="descriptionChanged(this.value)"></textarea>
+                                <small class="text-danger" id="descriptionError"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <input type="hidden" id="genreHidden" name="genreHidden">
+                            <label for="genre" class="col-sm-2 col-form-label">
+                                Select genre(s)
+                            </label>
+                            <div class="col-sm-10">
+                                <select multiple class="form-control" name="genre" id="genre" oninput="genreChanged(this.value)"></select>
+                                <small class="text-danger" id="genreError"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <input type="hidden" id="imagesListHidden" name="imagesListHidden">
+                            <label for="imagesForm" class="col-sm-2 col-form-label">Images</label>
+                            <div class="col-sm-10">
+                                <input name="images" id="images" type="file" accept="image/png, image/jpeg" oninput="imagesChanged(this.value)" multiple>
+                                <button id="uploadImagesButton" type="button" class="btn btn-light" disabled>Upload</button>
+                                <span id="imagesUploadIndicator" class="float-right"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <input type="hidden" id="coverImageListHidden" name="coverImageListHidden">
+                            <label for="coverImageForm" class="col-sm-2 col-form-label">Cover image</label>
+                            <div class="col-sm-10">
+                                <input name="coverImage" id="coverImage" type="file" accept="image/png, image/jpeg" oninput="coverImageChanged(this.value)">
+                                <button id="uploadCoverImageButton" type="button" class="btn btn-light" disabled>Upload</button>
+                                <span id="coverImageUploadIndicator" class="float-right"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="gameSubmitButton" disabled style="margin-top: 3%; margin-bottom: 3%;">Submit</button>
+                </form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

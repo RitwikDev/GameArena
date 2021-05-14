@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta charset="utf-8">
+        <title>GameArena</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="../static/signup.js"></script>
+        <script src="../static/searchButtonNavbar.js"></script>
+        <link rel="stylesheet" href="../static/general.css">
+    </head>
+
+    <body style="color: white;">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="/">Home</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Sign up/Log in
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/showSignup">Sign up</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/showLogin">Log in</a>
+                </div>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="/showSearch" method="POST">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" id="searchField" name="searchField" aria-label="Search" oninput="searchTermChanged()">
+                <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+          </div>
+        </nav>
+
+        <div class="row" style="background-color: maroon; padding: 10px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h1>Create your account</h1>
+                <span class="badge badge-pill badge-primary">All fields are mandatory.</span>
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+        <form style="margin-top: 3%;">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group" id="firstNameDiv">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter First Name" oninput="elementChanged(this)">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group" id="lastNameDiv">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name" oninput="elementChanged(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="emailId">Email address</label>
+                        <div class="col-sm-9" id="emailIdDiv">
+                            <input type="email" class="form-control" id="emailId" name="emailId" aria-describedby="emailHelp" placeholder="Enter email" oninput="elementChanged(this)" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="username">Username</label>
+                        <div class="col-sm-9" id="usernameDiv">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username" oninput="elementChanged(this)" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="password">Password</label>
+                        <div class="col-sm-9" id="passwordDiv">
+                            <input type="password" class="form-control" id="password" placeholder="Password" name="password" oninput="elementChanged(this)" required>
+                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                Your password must be 8-20 characters long.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="confirmPassword">Confirm Password</label>
+                        <div class="col-sm-9" id="confirmPasswordDiv">
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword" oninput="elementChanged(this)" required>
+                            <small id="confirmPasswordHelpBlock" class="form-text text-muted">
+                                Just to confirm, enter your password again. It should match the password that you entered above.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="dateOfBirth">Date of Birth</label>
+                        <div class="col-sm-9" id="dateOfBirthDiv">
+                            <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" onchange="elementChanged(this)">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Gender</label>
+                        <div class="col-sm-9">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genderRadio" id="genderRadioM" value="M" checked="checked">
+                                <label class="form-check-label" for="genderRadioM">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genderRadio" id="genderRadioF" value="F">
+                                <label class="form-check-label" for="genderRadioF">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <button type="submit" id="createAccountButton" class="btn btn-primary" disabled="true" style="margin-top: 3%; margin-bottom: 3%;">Create account</button>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </form>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

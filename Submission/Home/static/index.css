@@ -1,0 +1,81 @@
+/* *
+{
+  margin: 0%;
+  padding: 0%;
+} */
+
+body
+{
+  background: #fff;
+  /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+  /* font-size: 14px; */
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+.swiper-container
+{
+  width: 100%;
+  height: 600px;
+  padding-top: 5%;
+  padding-bottom: 50px;
+  background-color: #000;
+}
+
+.swiper-slide
+{
+  background-position: center;
+  background-size: cover;
+  width: 350px;
+  height: 300px;
+  background: #000;
+  -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0006);
+}
+
+.featuredGameImage
+{
+  width: 350px;
+  height: 300px;
+}
+
+.genreImage
+{
+  width: 350px;
+  height: 350px;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.gameGenreCarousel
+{
+  background-color: black;
+  padding-bottom: 50px;
+}
+
+#genreDesBoxRight
+{
+  background-color: black;
+  color: white;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-size: 25pt;
+  justify-content: center;
+  padding-bottom: 50px;
+  padding-top: 25px;
+  padding-right: 75px;
+}
+
+#genreDesBoxLeft
+{
+  background-color: black;
+  color: white;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-size: 25pt;
+  justify-content: center;
+  padding-bottom: 50px;
+  padding-top: 25px;
+  margin-left: 150px;
+  padding-right: 70px;
+}

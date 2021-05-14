@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta charset="utf-8">
+        <title>Get Gamed</title>
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../static/index.css"/>
+        <script src="../static/index.js"></script>
+        <script src="../static/searchButtonNavbar.js"></script>
+    </head>
+
+    <body>
+      <input type="hidden" value={{status}} id="status">
+      <div class="container-fluid">
+
+        <!--Logged in-->
+        <div id="userNav" style="display: none;">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Account
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">My Library</a>
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="/showCart">Cart</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                  </div>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0" action="/showSearch" method="POST">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" id="searchField" name="searchField" aria-label="Search" oninput="searchTermChanged()">
+                <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+        </div>
+
+        <!--Guest-->
+        <div id="guestNav" style="display: none;">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sign up/Log in
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/showSignup">Sign up</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/showLogin">Log in</a>
+                  </div>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0" action="/showSearch" method="POST">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" id="searchField" name="searchField" aria-label="Search" oninput="searchTermChanged()">
+                <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+        </div>
+
+        <div class="row">
+          <div class="swiper-container">
+            <h1 class="text-light text-center">Featured Games</h1>
+            <div class="swiper-wrapper" id="featuredGames">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="gameGenreCarousel col-md-4">
+            <h1 class="text-light text-center">Action Games</h1>
+            <div id="actionGenreCrousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+              </ol>
+              <div class="carousel-inner" id="actionGenreCarouselInner">
+              </div>
+              <a class="carousel-control-prev" href="#actionGenreCrousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#actionGenreCrousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card" id="genreDesBoxRight" style="width: 38rem;">
+              <div class="card-body">
+                Probably the best known category of the video game industry, the Action genre of games lets you become super hero and save the world.
+                Play some of the most popular games of all time such as Contra, Legend of Zelda, and many more. We have also got some new releases
+                as well including Cyberpunk 2077! Game On!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card" id="genreDesBoxLeft" style="width: 38rem;">
+              <div class="card-body">
+                Do you like adventure? Do you also like to play video games? If you said yes, then you have come to the right place. Here, you can expect
+                to find the best games in the Adventure gaming genre. Some of the most popular adventure games we currently have are: Cyberpunk 2077, Legend 
+                of Zelda: Breath of the Wild, and the all time popular Super Mario Brothers!
+              </div>
+            </div>
+          </div>
+          <div class="gameGenreCarousel col-md-4">
+            <h1 class="text-light text-center">Adventure Games</h1>
+            <div id="adventureGenreCrousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+              </ol>
+              <div class="carousel-inner" id="adventureGenreCarouselInner">
+              </div>
+              <a class="carousel-control-prev" href="#adventureGenreCrousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#adventureGenreCrousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="gameGenreCarousel col-md-4">
+            <h1 class="text-light text-center">Racing Games</h1>
+            <div id="racingGenreCrousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+              </ol>
+              <div class="carousel-inner" id="racingGenreCarouselInner">
+              </div>
+              <a class="carousel-control-prev" href="#racingGenreCrousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#racingGenreCrousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card" id="genreDesBoxRight" style="width: 38rem;">
+              <div class="card-body">
+                Do you enjoy the thrill of racing? Do you like fast cars? Then the Racing genre of games will keep you occupied for a long
+                time. Race woth the newest cars the automobile industry has to offer. If you like vintage cars, fret not for we have the 
+                latest Forza which includes race cars of the '70s. Buckle up and enjoy the ride!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card" id="genreDesBoxLeft" style="width: 38rem;">
+              <div class="card-body">
+                Shooting games give you the power you crave for. If you like the metallic sounds of heavy artillery combined with the tense 
+                atmosphere of wars, then you are made to play shooting games. Take control of the troops deployed in World War 2 and fight against
+                real time opponents in Call of Duty: Modern Warfare. There are many more shooting games waiting for you.
+              </div>
+            </div>
+          </div>
+          <div class="gameGenreCarousel col-md-4">
+            <h1 class="text-light text-center">Shooting Games</h1>
+            <div id="shootingGenreCrousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+              </ol>
+              <div class="carousel-inner" id="shootingGenreCarouselInner">
+              </div>
+              <a class="carousel-control-prev" href="#shootingGenreCrousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#shootingGenreCrousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="gameGenreCarousel col-md-4">
+            <h1 class="text-light text-center">Role Playing Games</h1>
+            <div id="rpgGenreCrousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+              </ol>
+              <div class="carousel-inner" id="rpgGenreCarouselInner">
+              </div>
+              <a class="carousel-control-prev" href="#rpgGenreCrousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#rpgGenreCrousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card" id="genreDesBoxRight" style="width: 38rem;">
+              <div class="card-body">
+                Role playing games sound simple and easy to play and master, but they have developed far more than any other genre 
+                in the past few years. Live your life vicariously as a movie star, or turn yourself into a virtual human with the Sims 4!
+                You will face many challenges in your life as a sim, are you ready to face them? 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+      <!-- <script src="../static/SwipperForHomePage.js"></script> -->
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
